@@ -58,6 +58,7 @@ if echo "$git_output" | grep -q "Already up to date."; then
     echo "$(timestamp) Aucun changement dans le dépôt Git. Le conteneur Docker ne sera pas redémarré."
 else
     echo "$(timestamp) Mises à jour trouvées dans le dépôt Git. Redémarrage du conteneur Docker..."
+    sudo docker logs telcotools-ctn &>> ../logs/dockerTelcotoolsCtn.log
     sudo docker stop telcotools-ctn
     sudo docker rm telcotools-ctn
     sudo docker build -t telcotools-docker .
